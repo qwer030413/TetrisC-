@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LdJ1o5+HSqk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Seojin Park\\Desktop\\Coding\\TetrisC#\\TetrisC#.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Seojin Park\\.nuget\\packages\\raylib-cs\\8.1.0\\raylib-cs.8.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
