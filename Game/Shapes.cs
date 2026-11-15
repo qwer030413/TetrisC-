@@ -44,20 +44,39 @@ class Shapes
         {
             { 0, 0, 1 },
             { 1, 1, 1 }
+        },
+        [""] = new int[,]
+        {
+            {}
         }
     };
 
-    public void DrawShape(int[,] shape, int x, int y, int blockSize)
+    public static readonly Dictionary<string, Color> Colors = new()
+    {
+        ["I"] = Color.SkyBlue,
+        ["O"] = Color.Yellow,
+        ["T"] = Color.Purple,
+        ["S"] = Color.Green,
+        ["Z"] = Color.Red,
+        ["J"] = Color.Blue,
+        ["L"] = Color.Orange
+    };
+    public int[,] SToShape(string temp)
+    {
+        return Data[temp];
+    }
+    public void DrawShape(int[,] shape, int x, int y, int blockSize, Color color)
     {
         for(int r = 0; r < shape.GetLength(0); r++)
         {
             for(int c = 0; c < shape.GetLength(1); c++)
             {
-                int row = x + (blockSize * r);
-                int col = y + (blockSize * c);
+                int row = x + (blockSize * c);
+                int col = y + (blockSize * r);
                 if(shape[r,c] == 1)
                 {
-                    Raylib.DrawRectangle(100,200,200,30,Color.White);
+                    Raylib.DrawRectangle(row,col,blockSize,blockSize,color);
+                    Raylib.DrawRectangleLines(row,col,blockSize,blockSize,Color.Black);
                 }
             }
         }

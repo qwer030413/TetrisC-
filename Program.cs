@@ -2,7 +2,7 @@
 {
     public static void Main(string[] args)
     {
-        Board board = new Board();
-        
+        Game game = new Game();
+        game.Run();
     }
 }

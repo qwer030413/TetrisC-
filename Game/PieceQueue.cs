@@ -11,10 +11,10 @@ class PieceQueue
     }
     private void refill()
     {
-        string[] blocks = {"O", "i", "S", "Z", "L", "J", "T"};
-        for(int i = 0; i < blocks.Length; i++)
+        string[] blocks = {"O", "I", "S", "Z", "L", "J", "T"};
+        for(int i = blocks.Length - 1; i > 0; i--)
         {
-            int j = random.Next(blocks.Length - 1);
+            int j = random.Next(i + 1);
             string temp = blocks[j];
             blocks[j] = blocks[i];
             blocks[i] = temp;
@@ -29,10 +29,15 @@ class PieceQueue
 
     public string getNext()
     {
-        if(pieces.Count <= 7)
+        if(pieces.Count < 6)
         {
             refill();
         }
         return pieces.Dequeue();
+    }
+
+    public List<string> GetPreview()
+    {
+        return pieces.Take(5).ToList();
     }
 }

@@ -2,52 +2,32 @@ using Raylib_cs;
 
 internal class Board
 {
-
-    public Board()
+    PieceQueue pieceQueue;
+    Shapes shape;
+    public Board(PieceQueue PQ)
     {
+        shape = new Shapes();
+        pieceQueue = PQ;
         Raylib.InitWindow(1000, 1000, "Hello, World");
         Raylib.SetTargetFPS(60);
 
-        while (!Raylib.WindowShouldClose())
-        {
-            Draw();
-        }
-
-        Raylib.CloseWindow();
     }
 
-    private void Draw()
+    private void DrawNext5Pieces()
     {
-        InputHandler input = new InputHandler();
-        string lastKey = "";
-        string key = input.ReadKey();
-        // main window
-        Rectangle parentRect = new Rectangle(300,200,400,600);
-        int rows = 20;
-        int cols = 10;
-        float cellWidth = parentRect.Width  / (float)cols;
-        float cellHeight = parentRect.Height / (float)rows;
-        if (key != "")
+        List<string> temp = pieceQueue.GetPreview();
+        int j = 250;
+        for(int i = 0; i < temp.Count; i++)
         {
-            lastKey = key;
+            shape.DrawShape(shape.SToShape(temp[i]),750,j,30,Shapes.Colors[temp[i]]);
+            j += 100;
         }
+    }
+
+    public void Draw(Tetromino currentPiece)
+    {
+        // main window
         Raylib.BeginDrawing();
-        // make main grid
-        // for (int i = 0; i < rows; i++)
-        // {
-        //     for (int j = 0; j < cols; j++)
-        //     {
-        //         // Calculate individual cell position
-        //         float x = parentRect.X + j * cellWidth;
-        //         float y = parentRect.Y + i * cellHeight;
-
-        //         // Draw filled cell
-        //         Raylib.DrawRectangle((int)x, (int)y, (int)cellWidth, (int)cellHeight, Color.Blank);
-
-        //         // Draw cell border
-        //         Raylib.DrawRectangleLines((int)x, (int)y, (int)cellWidth, (int)cellHeight, Color.DarkGray);
-        //     }
-        // }
         Raylib.DrawRectangleLines(300,200,400,600,Color.White);
 
 
@@ -62,11 +42,14 @@ internal class Board
         Raylib.DrawText("NEXT",710,205,20,Color.Black);
         Raylib.DrawRectangleLines(700,230,200,500,Color.White);
 
-
-        
+        string type = currentPiece.Type;
+        int x = 300 + currentPiece.Column * 40;
+        int y = 200 + currentPiece.Row * 30;
+        shape.DrawShape(Shapes.Data[type], x, y, 30, Shapes.Colors[type]);
+        DrawNext5Pieces();
         Raylib.ClearBackground(Color.Black);
-        Raylib.DrawText($"{input.ReadKey()}", 12, 12, 20, Color.White);
 
+        // shape.DrawShape(shape.SToShape(input.ReadKey()),0,0,50);
         Raylib.EndDrawing();
     }
 }
