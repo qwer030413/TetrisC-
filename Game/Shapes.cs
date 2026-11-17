@@ -81,4 +81,17 @@ class Shapes
             }
         }
     }
+
+    public int[,] RotateShape(int[,] shape)
+    {
+        int[,] res = new int[shape.GetLength(1), shape.GetLength(0)];
+        for(int r = 0; r < shape.GetLength(0); r++)
+        {
+            for(int c = 0; c < shape.GetLength(1); c++)
+            {
+                res[c,shape.GetLength(0) - 1 - r] = shape[r,c];
+            }
+        }
+        return res;
+    }
 }

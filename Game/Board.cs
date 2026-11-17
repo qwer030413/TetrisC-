@@ -24,10 +24,9 @@ internal class Board
         }
     }
 
-    public void Draw(Tetromino currentPiece, Tetromino holdPiece)
+    public void Draw(Tetromino currentPiece, Tetromino? holdPiece)
     {
         string type = currentPiece.Type;
-        string holdType = holdPiece.Type;
         // main window
         Raylib.BeginDrawing();
         Raylib.DrawRectangleLines(300,200,400,600,Color.White);
@@ -37,8 +36,15 @@ internal class Board
         Raylib.DrawRectangle(100,200,200,30,Color.White);
         Raylib.DrawText("HOLD",110,205,20,Color.Black);
         Raylib.DrawRectangleLines(100,230,200,100,Color.White);
-        shape.DrawShape(Shapes.Data[holdType], 170, 250, 30, Shapes.Colors[holdType]);
-
+        if (holdPiece != null)
+        {
+            string holdType = holdPiece.Type;
+            shape.DrawShape(
+                Shapes.Data[holdType],
+                170, 250, 30,
+                Shapes.Colors[holdType]
+            );
+        }
 
         // Next box
         Raylib.DrawRectangle(700,200,200,30,Color.White);
@@ -47,7 +53,13 @@ internal class Board
 
         int x = 300 + currentPiece.Column * 40;
         int y = 200 + currentPiece.Row * 30;
-        shape.DrawShape(Shapes.Data[type], x, y, 30, Shapes.Colors[type]);
+        int rotation = currentPiece.Rotation % 4;
+        int[,] newShape = Shapes.Data[type];
+        for(int i = 0; i < rotation; i++)
+        {
+            newShape = shape.RotateShape(newShape);
+        }
+        shape.DrawShape(newShape, x, y, 30, Shapes.Colors[type]);
         DrawNext5Pieces();
         Raylib.ClearBackground(Color.Black);
 

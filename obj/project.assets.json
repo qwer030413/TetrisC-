@@ -78,19 +78,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Seojin Park\\.nuget\\packages\\": {}
+    "C:\\Users\\comos\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Seojin Park\\Desktop\\Coding\\TetrisC#\\TetrisC#.csproj",
+      "projectUniqueName": "C:\\Users\\comos\\OneDrive\\바탕 화면\\Coding\\TetrisC-\\TetrisC#.csproj",
       "projectName": "TetrisC#",
-      "projectPath": "C:\\Users\\Seojin Park\\Desktop\\Coding\\TetrisC#\\TetrisC#.csproj",
-      "packagesPath": "C:\\Users\\Seojin Park\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Seojin Park\\Desktop\\Coding\\TetrisC#\\obj\\",
+      "projectPath": "C:\\Users\\comos\\OneDrive\\바탕 화면\\Coding\\TetrisC-\\TetrisC#.csproj",
+      "packagesPath": "C:\\Users\\comos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\comos\\OneDrive\\바탕 화면\\Coding\\TetrisC-\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Seojin Park\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\comos\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
