@@ -6,6 +6,7 @@ class Game
     private PieceQueue pieceQueue;
     // private Shapes shapes;
     Tetromino currentPiece;
+    Tetromino holdPiece;
     InputHandler input;
     public Game()
     {
@@ -23,14 +24,20 @@ class Game
         {
             if(input.ReadKey() == "S")
             {
-                Update();
+                nextPiece();
             }
-            board.Draw(currentPiece);
+            else if(input.ReadKey() == "C")
+            {
+                holdPiece = currentPiece;
+                nextPiece();
+            }
+
+            board.Draw(currentPiece, holdPiece);
         }
         Raylib.CloseWindow();
     }
 
-    public void Update()
+    public void nextPiece()
     {
         currentPiece = new Tetromino(pieceQueue.getNext(),0,3);
     }
