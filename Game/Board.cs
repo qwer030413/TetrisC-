@@ -1,9 +1,12 @@
 using Raylib_cs;
 
+
+// board start is 300,200
 internal class Board
 {
     PieceQueue pieceQueue;
     Shapes shape;
+    int[,] boardGrid = new int[10, 20];
     public Board(PieceQueue PQ)
     {
         shape = new Shapes();
@@ -19,7 +22,7 @@ internal class Board
         int j = 250;
         for(int i = 0; i < temp.Count; i++)
         {
-            shape.DrawShape(shape.SToShape(temp[i]),750,j,30,Shapes.Colors[temp[i]]);
+            shape.DrawShape(shape.SToShape(temp[i]),650,j,30,Shapes.Colors[temp[i]]);
             j += 100;
         }
     }
@@ -27,9 +30,13 @@ internal class Board
     public void Draw(Tetromino currentPiece, Tetromino? holdPiece)
     {
         string type = currentPiece.Type;
+        int x = 300 + currentPiece.Column * 30;
+        int y = 200 + currentPiece.Row * 30;
+        int rotation = currentPiece.Rotation % 4;
         // main window
         Raylib.BeginDrawing();
-        Raylib.DrawRectangleLines(300,200,400,600,Color.White);
+        Raylib.ClearBackground(Color.Black);
+        Raylib.DrawRectangleLines(300,200,300,600,Color.White);
 
 
         // hold box
@@ -47,13 +54,10 @@ internal class Board
         }
 
         // Next box
-        Raylib.DrawRectangle(700,200,200,30,Color.White);
-        Raylib.DrawText("NEXT",710,205,20,Color.Black);
-        Raylib.DrawRectangleLines(700,230,200,500,Color.White);
+        Raylib.DrawRectangle(600,200,200,30,Color.White);
+        Raylib.DrawText("NEXT",610,205,20,Color.Black);
+        Raylib.DrawRectangleLines(600,230,200,500,Color.White);
 
-        int x = 300 + currentPiece.Column * 40;
-        int y = 200 + currentPiece.Row * 30;
-        int rotation = currentPiece.Rotation % 4;
         int[,] newShape = Shapes.Data[type];
         for(int i = 0; i < rotation; i++)
         {
@@ -61,7 +65,6 @@ internal class Board
         }
         shape.DrawShape(newShape, x, y, 30, Shapes.Colors[type]);
         DrawNext5Pieces();
-        Raylib.ClearBackground(Color.Black);
 
         // shape.DrawShape(shape.SToShape(input.ReadKey()),0,0,50);
         Raylib.EndDrawing();

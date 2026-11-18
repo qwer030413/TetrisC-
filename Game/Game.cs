@@ -8,6 +8,8 @@ class Game
     Tetromino currentPiece;
     Tetromino? holdPiece = null;
     InputHandler input;
+    int X;
+    int Y;
     public Game()
     {
         pieceQueue = new PieceQueue();
@@ -15,6 +17,8 @@ class Game
         board = new Board(pieceQueue);
         currentPiece = new Tetromino(pieceQueue.getNext(),0,3,0);
         input = new InputHandler();
+        X = 0;
+        Y = 0;
         // shapes.DrawShape(Shapes.Data[currentPiece.Type],0,0,30,Shapes.Colors[currentPiece.Type]);
     }
 
@@ -26,14 +30,23 @@ class Game
             {
                 nextPiece();
             }
+            // we can only press c once per completion
             else if(input.ReadKey() == "C")
             {
-                holdPiece = currentPiece;
+                holdPiece = currentPiece;   
                 nextPiece();
             }
             else if (input.ReadKey() == "U")
             {
                 currentPiece.Rotation += 1;
+            }
+            else if(input.ReadKey() == "L" && currentPiece.Column > 0)
+            {
+                currentPiece.Column -= 1;
+            }
+            else if(input.ReadKey() == "R" && currentPiece.Column < 10 - Shapes.Data[currentPiece.Type].GetLength(1))
+            {
+                currentPiece.Column += 1;
             }
             board.Draw(currentPiece, holdPiece);
         }
