@@ -44,9 +44,14 @@ class Game
             {
                 currentPiece.Column -= 1;
             }
-            else if(input.ReadKey() == "R" && currentPiece.Column < 10 - Shapes.Data[currentPiece.Type].GetLength(1))
+            else if(input.ReadKey() == "R" && currentPiece.Column < 10 - currentPiece.currentShape().GetLength(1))
             {
                 currentPiece.Column += 1;
+            }
+
+            if(currentPiece.Column > 10 - currentPiece.currentShape().GetLength(1))
+            {
+                currentPiece.Column = 10 - currentPiece.currentShape().GetLength(1);
             }
             board.Draw(currentPiece, holdPiece);
         }

@@ -63,7 +63,7 @@ internal class Board
         {
             newShape = shape.RotateShape(newShape);
         }
-        shape.DrawShape(newShape, x, y, 30, Shapes.Colors[type]);
+        shape.DrawShape(currentPiece.currentShape(), x, y, 30, Shapes.Colors[type]);
         DrawNext5Pieces();
 
         // shape.DrawShape(shape.SToShape(input.ReadKey()),0,0,50);
