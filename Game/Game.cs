@@ -33,8 +33,17 @@ class Game
             // we can only press c once per completion
             else if(input.ReadKey() == "C")
             {
-                holdPiece = currentPiece;   
-                nextPiece();
+                if(holdPiece == null)
+                {
+                    holdPiece = currentPiece;   
+                    nextPiece();
+                }
+                else
+                {
+                    Tetromino temp = holdPiece;
+                    holdPiece = currentPiece;
+                    currentPiece = temp;
+                }
             }
             else if (input.ReadKey() == "U")
             {
